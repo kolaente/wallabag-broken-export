@@ -1,7 +1,8 @@
 <?php
 require_once 'db-mysql.php';
-$db = new db('localhost', 'wallabag', 'root', 'tTuG04Z5N2', '');
+$db = new db('db', 'wallabag', 'root', 'tTuG04Z5N2', '');
 
+echo '<pre>';
 //Get all Tags
 $db->setCol('wallabag_tag');
 $db->get();
@@ -46,5 +47,14 @@ foreach($entries as $entry)
 }
 
 $entries = json_encode($entries);
-echo $entries;
+if(file_put_contents('wallabag_export.json', $entries))
+{
+  echo 'Export successfully saved';
+} else {
+  echo 'Error saving export';
+}
 
+//echo $entries;
+
+
+echo '</pre>';
