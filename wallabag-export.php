@@ -18,12 +18,12 @@ $entries = $db->data;
 foreach($entries as $entry)
 {
   $db->setCol('wallabag_entry_tag');
-  $db->data['entry_id'] = $entry['id']
+  $db->data['entry_id'] = $entry['id'];
   $db->get();
   $tags_entry = [];
   foreach($db->data as $tag_entry)
   {
-    $tags_entry[] = $tags[$tag_entry['tag_id']]['label']
+    $tags_entry[] = $tags[$tag_entry['tag_id']]['label'];
   }
 
   $entries_export[] = [
