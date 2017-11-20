@@ -1,6 +1,6 @@
 <?php
 require_once 'db-mysql.php';
-$db = new db('db', 'wallabag', 'root', 'tTuG04Z5N2', '');
+$db = new db('db', 'wallabag', 'root', 'supersecretpassword', '');
 
 echo '<pre>';
 //Get all Tags
@@ -27,6 +27,7 @@ foreach($entries as $entry)
     $tags_entry[] = $tags[$tag_entry['tag_id']]['label'];
   }
 
+  // Build the JSON-Array with all Articles
   $entries_export[] = [
   'is_archived' => $entry['is_archived'],
   'is_starred' => $entry['is_starred'],
@@ -46,6 +47,7 @@ foreach($entries as $entry)
 ];
 }
 
+// Save the entries
 $entries = json_encode($entries);
 if(file_put_contents('wallabag_export.json', $entries))
 {
@@ -53,8 +55,5 @@ if(file_put_contents('wallabag_export.json', $entries))
 } else {
   echo 'Error saving export';
 }
-
-//echo $entries;
-
 
 echo '</pre>';
